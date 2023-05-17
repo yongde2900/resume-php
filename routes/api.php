@@ -18,10 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->group(function () {
 
-    Route::apiResource('comments', CommentController::class);
-
 });
+Route::apiResource('comments', CommentController::class);
 Route::apiResource('users', UserController::class);
+ROute::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'auth'], function () {
+        Route::get('/fb-sign-in');
+        Route::get('/fb-cb');
+    });
+});
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);

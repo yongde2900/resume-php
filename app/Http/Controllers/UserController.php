@@ -6,6 +6,8 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Exception;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -57,4 +59,21 @@ class UserController extends Controller
 
         return response()->json(null, 204);
     }
+
+    // public function fbSignInCallback()
+    // {
+    //     if (request()->error == 'access_denied') {
+    //         throw new Exception('access denied');
+    //     }
+    //     $redirect_url = env('FB_REDIRECT');
+    //     $fbUser = Socialite::driver('facebook')->fields(['name', 'email'])->redirectUrl($redirect_url)->user();
+    //     $fb_email = $fbUser->rmail;
+    //     if (is_null($fb_email)) {
+    //         throw new Exception('位授權使用者email');
+    //     }
+    //     $facebook_id = $fbUser->id;
+    //     $facebook_name = $fbUser->name;
+    //     echo 'success';
+    //
+    // }
 }
